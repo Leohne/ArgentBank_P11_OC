@@ -28,7 +28,7 @@ function Homepage() {
         <div className="feature-item">
           <img
             src={icon_money}
-            alt="Chat Icon"
+            alt="Money Icon"
             className="feature-icon"
           />
           <h3 className="feature-item-title">More savings means higher rates</h3>
@@ -39,7 +39,7 @@ function Homepage() {
         <div className="feature-item">
           <img
             src={icon_security}
-            alt="Chat Icon"
+            alt="Security Icon"
             className="feature-icon"
           />
           <h3 className="feature-item-title">Security you can trust</h3>
