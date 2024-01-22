@@ -7,7 +7,7 @@ import './index.css'
 import { Provider } from 'react-redux'
 import { configureStore } from "@reduxjs/toolkit"
 import rootReducer from './Redux/reducers'
-import { getUser } from './Redux/actions/user.action.js'
+// import { getUser } from './Redux/actions/user.action.js'
 
 const store = configureStore({
     reducer : rootReducer,

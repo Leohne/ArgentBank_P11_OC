@@ -1,18 +1,19 @@
 import { useState } from "react"
 import { userLogin } from "../Redux/actions/authentification"
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
+const navigate = useNavigate();
 
-const handlelogin = async () => {
+const handlelogin = async (e) => {
   (e).preventDefault ()
   try {
         await userLogin(email, password)
-        return <Navigate to="/user"/>
+        navigate("/user");
 } catch(error) {
-        console.log("erreur log", error.message)
+        console.log("erreur id/mdp", error.message)
 }}
     return (
 
