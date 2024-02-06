@@ -5,16 +5,19 @@ import './index.css'
 
 // REDUX
 import { Provider } from 'react-redux'
-import { configureStore } from "@reduxjs/toolkit"
-import rootReducer from './Redux/reducers'
-// import { getUser } from './Redux/actions/user.action.js'
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./Redux/reducers";
+import { thunk } from 'redux-thunk'
 
-const store = configureStore({
-    reducer : rootReducer,
-    devTools: true,
-})
+// Middleware personnalisé pour inclure Redux Thunk
 
-{/*store.dispatch(getUser()) // signifie lance moi l'action "getUser()"*/}
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+  devTools: true,
+});
+
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

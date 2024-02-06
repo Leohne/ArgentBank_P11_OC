@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import AB_Logo from "../assets/img/argentBankLogo.png"
 import { useLocation } from 'react-router-dom';
-import { userDisconnected } from "../Redux/actions/authentification";
+import { userDisconnected } from "../Redux/actions/userProfile";
 
 function Header() {
 const location = useLocation()
