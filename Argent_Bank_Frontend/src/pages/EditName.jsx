@@ -29,7 +29,7 @@ function EditName ( {onClose} ) {
 }
 
 EditName.propTypes = {
-    onClose: PropTypes.func.isRequired, // Assurez-vous que onClose est une fonction et requise
+    onClose: PropTypes.func.isRequired,
   };
 
 export default EditName;
