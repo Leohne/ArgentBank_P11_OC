@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { replaceUserName } from "../Redux/actions/userProfile"
 import { useDispatch } from "react-redux"
+import PropTypes from "prop-types";
 
 function EditName ( {onClose} ) {
     const [username, setUsername] = useState('')
@@ -27,5 +28,8 @@ function EditName ( {onClose} ) {
     )
 }
 
+EditName.propTypes = {
+    onClose: PropTypes.func.isRequired, // Assurez-vous que onClose est une fonction et requise
+  };
 
 export default EditName;
