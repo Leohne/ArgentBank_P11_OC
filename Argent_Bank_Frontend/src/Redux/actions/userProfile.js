@@ -70,27 +70,6 @@ export const replaceUserName = createAsyncThunk(
   }
 );
 
-
-
-/*export const replaceUserName = async (newUserName,token, dispatch) => {
-    try {
-        const response = await axios.put("http://localhost:3001/api/v1/user/profile",{ userName: newUserName },{
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            }
-        });
-        const userNameUpdate = { 
-            userName: response.body.userName
-    }      
-        console.log(response.data);  
-        dispatch(newUserName(userNameUpdate));
-        return response.data
-    } catch (error) {
-        console.log(error.message);
-        throw error;
-    }
-}*/
-
 export const userDisconnected = (dispatch) => {
 
     localStorage.removeItem("token");
