@@ -9,11 +9,14 @@ const [password, setPassword] = useState('')
 const navigate = useNavigate();
 const dispatch = useDispatch()
 
-const handlelogin = (e) => {
+const handlelogin = async (e) => {
   (e).preventDefault ()
   try {
-        userLogin(email, password, dispatch);
+        await userLogin(email, password, dispatch);
+        const token = localStorage.getItem("token")
+        if(token){
         navigate("/user");
+      }
 } catch(error) {
         console.log("erreur id/mdp", error.message)
 }}
@@ -25,8 +28,8 @@ const handlelogin = (e) => {
         <h1>Sign In</h1>
         <form onSubmit={handlelogin}>
           <div className="input-wrapper">
-            <label htmlFor="username">Username</label>
-            <input type="text" value={email} id="username" onChange={(e) => setEmail(e.target.value)} />
+            <label htmlFor="email">Email</label>
+            <input type="text" value={email} id="email" onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>

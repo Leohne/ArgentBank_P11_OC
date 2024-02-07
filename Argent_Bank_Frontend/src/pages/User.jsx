@@ -1,15 +1,25 @@
 import { useSelector } from 'react-redux';
+import EditName from './EditName';
+import { useState } from 'react';
 
 function User() {
 
   const user = useSelector(state => state.user);
+  const [openModal, setOpenModal] = useState(false);
  
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
     return (
         <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
-        <button className="edit-button">Edit Name</button>
+        <h1>Welcome back<br />{user.body.userName}</h1>
+        <button className="edit-button" onClick={handleOpenModal}>Edit Name</button>
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
@@ -42,8 +52,12 @@ function User() {
           <button className="transaction-button">View transactions</button>
         </div>
       </section>
+      {openModal && (
+        <EditName onClose={handleCloseModal} />
+      )}
     </main>
     )
 }
+
 
 export default User
