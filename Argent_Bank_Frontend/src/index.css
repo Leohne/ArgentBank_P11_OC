@@ -291,10 +291,7 @@ body {
 }
 
 .modal {
-  z-index: 1;
-  position: absolute;
-  top: 22%;
-  left: 40%;
+  margin: 0 auto;
   width: 20%;
   background-color: #12002b;
   padding: 20px;
@@ -302,12 +299,4 @@ body {
 
 .modal_title {
   color: #fff;
-}
-.modal_cross {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  background-color: #00bc77;
-  color: #fff;
-  cursor: pointer;
 }

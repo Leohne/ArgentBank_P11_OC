@@ -15,8 +15,7 @@ function EditName ( {onClose} ) {
     }
     return (
         <div className="modal">
-            <h2 className="modal_title">Edit Name</h2>
-            <button className="modal_cross" onClick={onClose}>X</button>
+            <h3 className="modal_title">Edit Name</h3>                      
             <form onSubmit={handleUserName}>
                 <div className="input-wrapper">
                     <label htmlFor="username" className="modal_title">Username</label>

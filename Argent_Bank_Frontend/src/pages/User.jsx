@@ -6,20 +6,22 @@ function User() {
 
   const user = useSelector(state => state.user);
   const [openModal, setOpenModal] = useState(false);
- 
-  const handleOpenModal = () => {
-    setOpenModal(true);
-  };
 
   const handleCloseModal = () => {
     setOpenModal(false);
   };
 
+  const handleToogleModal = () => {
+    setOpenModal(!openModal)
+  }
     return (
         <main className="main bg-dark">
       <div className="header">
         <h1>Welcome back<br />{user.body.userName}</h1>
-        <button className="edit-button" onClick={handleOpenModal}>Edit Name</button>
+        <button className="edit-button" onClick={handleToogleModal} >Edit Name</button>
+        {openModal && (
+        <EditName onClose={handleCloseModal} />
+      )}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
@@ -52,9 +54,7 @@ function User() {
           <button className="transaction-button">View transactions</button>
         </div>
       </section>
-      {openModal && (
-        <EditName onClose={handleCloseModal} />
-      )}
+      
     </main>
     )
 }
