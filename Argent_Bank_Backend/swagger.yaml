@@ -121,7 +121,7 @@ paths:
       tags:
         - Account Module
       summary: User Account API
-      description: API for fetching a user account
+      description: API for fetching a user id account
       parameters:
         - in: header
           name: Authorization
@@ -131,16 +131,16 @@ paths:
         - application/json
       responses:
         '200':
-          description: User account retrieved successully
+          description: User id account retrieved successully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/UserAccount'
         '400':
           description: Invalid Fields
         '500':
-          description: Internal Server Error   
+          description: Internal Server Error    
 
-  /user/profile/account/transaction:
-    post:
+  /user/profile/account/:idTransaction:
+    get:
       security:
         - Bearer: []
       tags:
@@ -152,13 +152,19 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+        - in: query
+          name: idTransaction
+          description: Update account transaction attributes
+          required: true
+          schema:
+            $ref: '#/definitions/idTransaction'
       produces:
         - application/json
       responses:
         '200':
           description: Transaction account updated successully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/idTransaction'
         '400':
           description: Invalid Fields
         '500':
@@ -170,19 +176,25 @@ paths:
       tags:
         - Transaction Module
       summary: User Account API
-      description: API for modify a transaction account 
+      description: API for edit transaction 
       parameters:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+        - in: query
+          name: idTransaction
+          description: Update account transaction attributes
+          required: true
+          schema:
+            $ref: '#/definitions/UserAccountTransaction'
       produces:
         - application/json
       responses:
         '200':
-          description: Transaction account modified successully
+          description: Edited Transaction successully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/UserAccountTransaction'
         '400':
           description: Invalid Fields
         '500':
@@ -246,16 +258,19 @@ definitions:
   UserAccount:
     type: object
     properties:
-      firstName:
-        type: string
-      lastName:
-        type: string
-      userId:
-        type: string
-  UserAccountTransaction :
-    type: object
-    properties:
-      userId: 
+      accountId:
         type: string
       transactionId:
+        type: string
+  idTransaction:
+    type: object
+    properties:
+      transactionId:
+        type: string    
+  UserAccountTransaction:
+    type: object
+    properties:
+      category:
+        type: string
+      note:
         type: string
