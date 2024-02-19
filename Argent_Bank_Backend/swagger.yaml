@@ -114,14 +114,14 @@ paths:
         '500':
           description: Internal Server Error
 
-  /user/profile/account:
+  /user/profile/accounts:
     get:
       security:
         - Bearer: []
       tags:
         - Account Module
       summary: User Account API
-      description: API for fetching a user id account
+      description: API for fetching a user id accounts
       parameters:
         - in: header
           name: Authorization
@@ -131,11 +131,11 @@ paths:
         - application/json
       responses:
         '200':
-          description: User id account retrieved successully
+          description: User id accounts retrieved successully
           schema:
             $ref: '#/definitions/UserAccount'
-        '400':
-          description: Invalid Fields
+        '401':
+          description: Authentication failed
         '500':
           description: Internal Server Error    
 
@@ -154,7 +154,7 @@ paths:
           required: true
         - in: query
           name: idTransaction
-          description: Update account transaction attributes
+          description: Transaction ID associated with the account
           required: true
           schema:
             $ref: '#/definitions/idTransaction'
@@ -162,11 +162,13 @@ paths:
         - application/json
       responses:
         '200':
-          description: Transaction account updated successully
+          description: Retrieved transaction ID
           schema:
             $ref: '#/definitions/idTransaction'
         '400':
           description: Invalid Fields
+        '401':
+          description: Authentication failed
         '500':
           description: Internal Server Error 
 
@@ -182,9 +184,15 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+        - in: body
+          name: body
+          description: Edite note or category transaction
+          required: true
+          schema:  
+            $ref: '#/definitions/UserAccountTransaction'  
         - in: query
           name: idTransaction
-          description: Update account transaction attributes
+          description: Transaction ID associated with the account
           required: true
           schema:
             $ref: '#/definitions/UserAccountTransaction'
@@ -197,6 +205,8 @@ paths:
             $ref: '#/definitions/UserAccountTransaction'
         '400':
           description: Invalid Fields
+        '401':
+          description: Authentication failed  
         '500':
           description: Internal Server Error
           
@@ -262,14 +272,33 @@ definitions:
         type: string
       transactionId:
         type: string
+      balance:
+        type: number  
   idTransaction:
     type: object
     properties:
       transactionId:
-        type: string    
-  UserAccountTransaction:
+        type: string
+      date:
+        type: string
+        format: date
+      description:
+        type: string
+      amount: 
+        type: number
+      balance:
+        type: number
+      transaction type:
+        type: string
+      category:
+        type: string
+      note:
+        type: string     
+  UserAccountPutTransaction:
     type: object
     properties:
+      transactionId:
+        type: string
       category:
         type: string
       note:
