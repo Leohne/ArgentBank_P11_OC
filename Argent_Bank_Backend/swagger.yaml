@@ -126,10 +126,6 @@ paths:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
-          required: true
-        - in: query
-          name: userId
-          description: User ID associated with the accounts
           required: true  
       produces:
         - application/json

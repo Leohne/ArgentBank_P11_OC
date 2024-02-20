@@ -8,7 +8,7 @@ const location = useLocation()
 const user = location.pathname === "/user"
 const content = user ? 'Disconnect' : 'Sign in'
 
-    return(
+return(
     <nav className="main-nav">
       <Link to="/" className="main-nav-logo">
         <img

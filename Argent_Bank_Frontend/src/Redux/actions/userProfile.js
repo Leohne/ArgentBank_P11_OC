@@ -32,6 +32,21 @@ export const userLogin = async (email, password ,dispatch) => {
     }
 };
 
+export const createNewUser = async (email, password, firstName, lastName) => {
+  try {
+    const response = await axios.post("http://localhost:3001/api/v1/user/signup", {
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName
+    });
+    return response.data     
+} catch (error) {
+    console.log(error.message);
+    throw error;
+}
+};
+
 export const getUserProfile = async (token) => {
     try {
         const response = await axios.post("http://localhost:3001/api/v1/user/profile",{}, {

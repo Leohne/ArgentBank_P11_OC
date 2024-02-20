@@ -1,31 +1,28 @@
 import { useState } from "react"
-import { userLogin } from "../Redux/actions/userProfile"
-import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { createNewUser } from "../Redux/actions/userProfile"
+import { useNavigate } from "react-router-dom";
 
-function SignIn() {
+function Signup() {
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
+const [firstName, setFirstName] = useState('')
+const [lastName, setLastName] = useState('')
 const navigate = useNavigate();
-const dispatch = useDispatch()
 
 const handlelogin = async (e) => {
   (e).preventDefault ()
   try {
-        await userLogin(email, password, dispatch);
-        const token = localStorage.getItem("token")
-        if(token){
-        navigate("/user");
-      }
+        await createNewUser(email, password, firstName, lastName );
+        navigate("/sign-in");
 } catch(error) {
-        console.log("erreur id/mdp", error.message)
+        console.log(error.message)
 }}
     return (
 
         <main className="main bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
-        <h1>Sign In</h1>
+        <h1>Sign Up</h1>
         <form onSubmit={handlelogin}>
           <div className="input-wrapper">
             <label htmlFor="email">Email</label>
@@ -35,16 +32,19 @@ const handlelogin = async (e) => {
             <label htmlFor="password">Password</label>
             <input type="password" value={password} id="password" onChange={(e) => setPassword(e.target.value)} />
           </div>
-          <div className="input-remember">
-            <input type="checkbox" id="remember-me" /><label htmlFor="remember-me"
-              >Remember me</label>
+          <div className="input-wrapper">
+            <label htmlFor="firstName">First Name</label>
+            <input type="text" value={firstName} id="firstName" onChange={(e) => setFirstName(e.target.value)} />
           </div>
-            <button type="submit" className="sign-in-button">Sign In</button>        
+          <div className="input-wrapper">
+            <label htmlFor="lastName">Last Name</label>
+            <input type="text" value={lastName} id="lastName" onChange={(e) => setLastName(e.target.value)} />
+          </div>
+            <button type="submit" className="sign-in-button">Sign Up</button>        
         </form>
       </section>
-        <Link to={"/sign-up"} className="signUp" >Sign up</Link>
     </main>
     )
 }
 
-export default SignIn
+export default Signup

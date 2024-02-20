@@ -300,3 +300,10 @@ body {
 .modal_title {
   color: #fff;
 }
+
+.signUp {
+  margin: 10px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
