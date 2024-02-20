@@ -127,6 +127,10 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+        - in: query
+          name: userId
+          description: User ID associated with the accounts
+          required: true  
       produces:
         - application/json
       responses:
@@ -153,8 +157,8 @@ paths:
           description: Attach Bearer JWT token
           required: true
         - in: query
-          name: idTransaction
-          description: Transaction ID associated with the account
+          name: accountId
+          description: Account ID associated with the transaction
           required: true
           schema:
             $ref: '#/definitions/idTransaction'
@@ -165,8 +169,6 @@ paths:
           description: Retrieved transaction ID
           schema:
             $ref: '#/definitions/idTransaction'
-        '400':
-          description: Invalid Fields
         '401':
           description: Authentication failed
         '500':
@@ -189,20 +191,14 @@ paths:
           description: Edite note or category transaction
           required: true
           schema:  
-            $ref: '#/definitions/UserAccountTransaction'  
-        - in: query
-          name: idTransaction
-          description: Transaction ID associated with the account
-          required: true
-          schema:
-            $ref: '#/definitions/UserAccountTransaction'
+            $ref: '#/definitions/EditTransaction'  
       produces:
         - application/json
       responses:
         '200':
           description: Edited Transaction successully
           schema:
-            $ref: '#/definitions/UserAccountTransaction'
+            $ref: '#/definitions/EditTransaction'
         '400':
           description: Invalid Fields
         '401':
@@ -294,7 +290,7 @@ definitions:
         type: string
       note:
         type: string     
-  UserAccountPutTransaction:
+  EditTransaction:
     type: object
     properties:
       transactionId:
